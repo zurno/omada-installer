@@ -15,7 +15,9 @@ echo "[+] Verifying supported OS"
 OS=$(hostnamectl status | grep "Operating System" | sed 's/^[ \t]*//')
 echo "[~] $OS"
 
-if [[ $OS = *"Ubuntu 16.04"* ]]; then
+if [[ $OS = *"Debian GNU/Linux 12"* ]]; then
+    OsVer=bookworm
+elif [[ $OS = *"Ubuntu 16.04"* ]]; then
     OsVer=xenial
 elif [[ $OS = *"Ubuntu 18.04"* ]]; then
     OsVer=bionic
