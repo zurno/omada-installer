@@ -41,8 +41,8 @@ else
 fi
 
 echo "[+] Installing script prerequisites"
-apt-get -qq update
-apt-get -qq install gnupg curl &> /dev/null
+apt-get update
+apt-get install gnupg curl &> /dev/null
 
 echo "[+] Importing the MongoDB 4.4 PGP key and creating APT repository"
 curl -fsSL https://pgp.mongodb.com/server-4.4.asc | gpg -o /usr/share/keyrings/mongodb-server-4.4.gpg --dearmor
@@ -54,17 +54,17 @@ fi
 
 # Package dependencies
 echo "[+] Installing MongoDB 4.4"
-apt-get -qq update
-apt-get -qq install mongodb-org &> /dev/null
+apt-get update
+apt-get install mongodb-org &> /dev/null
 echo "[+] Installing OpenJDK 8 JRE (headless)"
-apt-get -qq install openjdk-8-jre-headless &> /dev/null
+apt-get install openjdk-8-jre-headless &> /dev/null
 echo "[+] Installing JSVC"
-apt-get -qq install jsvc &> /dev/null
+apt-get install jsvc &> /dev/null
 
 echo "[+] Downloading the latest Omada Software Controller package"
 OmadaPackageUrl=$(curl -fsSL https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oP '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
 wget -qP /tmp/ $OmadaPackageUrl
-echo "[+] Installing Omada Software Controller"
+echo "[+] Installing Omada Software Controller from $OmadaPackageUrl"
 dpkg -i /tmp/$(basename $OmadaPackageUrl) &> /dev/null
 
 hostIP=$(hostname -I | cut -f1 -d' ')
