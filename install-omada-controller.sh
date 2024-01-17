@@ -49,7 +49,7 @@ curl -fsSL https://pgp.mongodb.com/server-4.4.asc | gpg -o /usr/share/keyrings/m
 if [[ $OS = *"Ubuntu"* ]]; then
     echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/4.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-4.4.list
 elif [[ $OS = *"Debian"* ]]; then
-    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/debian $OsVer/mongodb-org/4.4 main" > /etc/apt/sources.list.d/mongodb-org-4.4.list
+    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] http://repo.mongodb.org/apt/debian $OsVer/mongodb-org/4.4 main" > /etc/apt/sources.list.d/mongodb-org-4.4.list
 fi
 
 # Package dependencies
