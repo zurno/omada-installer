@@ -13,7 +13,7 @@ echo -e "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 echo "[+] Verifying supported OS"
 OS=$(hostnamectl status | grep "Operating System" | sed 's/^[ \t]*//')
-echo "[~] $OS"
+echo "[~~] $OS"
 
 if [[ $OS = *"Debian GNU/Linux 12"* ]]; then
     OsVer=bookworm
