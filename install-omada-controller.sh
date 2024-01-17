@@ -41,7 +41,11 @@ apt-get -qq install gnupg curl &> /dev/null
 
 echo "[+] Importing the MongoDB 4.4 PGP key and creating APT repository"
 curl -fsSL https://pgp.mongodb.com/server-4.4.asc | gpg -o /usr/share/keyrings/mongodb-server-4.4.gpg --dearmor
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/4.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-4.4.list
+if [[ $OS = *"Ubuntu"* ]]; then
+    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/4.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-4.4.list
+elif [[ $OS = *"Debian"* ]]; then
+    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/debian $OsVer/mongodb-org/4.4 main" > /etc/apt/sources.list.d/mongodb-org-4.4.list
+fi
 
 # Package dependencies
 echo "[+] Installing MongoDB 4.4"
