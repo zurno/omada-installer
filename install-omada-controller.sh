@@ -15,8 +15,24 @@ echo "[+] Verifying supported OS"
 OS=$(hostnamectl status | grep "Operating System" | sed 's/^[ \t]*//')
 echo "[~~] $OS"
 
-if [[ $OS = *"Debian GNU/Linux 12"* ]]; then
+if [[ $OS = *"Debian GNU/Linux 7"* ]]; then
+    OsVer=wheezy
+    echo "LTS Support for Debian 7 (Wheezy) ended May 31, 2018"
+elif [[ $OS = *"Debian GNU/Linux 8"* ]]; then
+    OsVer=jessie
+    echo "LTS Support for Debian 8 (Jessie) ended June 30, 2020"
+elif [[ $OS = *"Debian GNU/Linux 9"* ]]; then
+    OsVer=stretch
+    echo "LTS Support for Debian 9 (Stretch) ended June 30, 2022"
+elif [[ $OS = *"Debian GNU/Linux 10"* ]]; then
+    OsVer=buster
+    echo "LTS Support for Debian 10 (Buster) ends June 30, 2024"
+elif [[ $OS = *"Debian GNU/Linux 11"* ]]; then
+    OsVer=bullseye
+    echo "LTS Support for Debian 11 (Bullseye) ends June 30, 2026"
+elif [[ $OS = *"Debian GNU/Linux 12"* ]]; then
     OsVer=bookworm
+    echo "LTS Support for Debian 12 (Bookworm) ends June 30, 2028"
 elif [[ $OS = *"Ubuntu 16.04"* ]]; then
     OsVer=xenial
 elif [[ $OS = *"Ubuntu 18.04"* ]]; then
@@ -44,7 +60,7 @@ curl -fsSL https://pgp.mongodb.com/server-4.4.asc | gpg -o /usr/share/keyrings/m
 if [[ $OS = *"Ubuntu"* ]]; then
     echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/4.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-4.4.list
 elif [[ $OS = *"Debian"* ]]; then
-    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/debian/dists/$OsVer/mongodb-org/4.4" > /etc/apt/sources.list.d/mongodb-org-4.4.list
+    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/debian $OsVer/mongodb-org/4.4 main" > /etc/apt/sources.list.d/mongodb-org-4.4.list
 fi
 
 # Package dependencies
