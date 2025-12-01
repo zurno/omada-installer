@@ -55,6 +55,7 @@ apt-get -qq update
 echo "[+] Downloading the latest Omada Software Controller package"
 OmadaPackageUrl=$(curl -fsSL https://support.omadanetworks.com/us/product/omada-software-controller/?resourceType=download | grep -oPi '<a[^>]*href="\K[^"]*linux_x64_[0-9]*\.deb[^"]*' | head -n 1)
 OmadaPackageBasename=$(basename $OmadaPackageUrl)
+echo $OmadaPackageBasename $OmadaPackageUrl
 curl -sLo /tmp/$OmadaPackageBasename $OmadaPackageUrl
 
 # Package dependencies
