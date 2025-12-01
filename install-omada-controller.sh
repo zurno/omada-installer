@@ -11,10 +11,10 @@ echo "TP-Link Omada Software Controller - Installer"
 echo "https://github.com/monsn0/omada-installer"
 echo -e "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
-if [ -e "/usr/bin/tpeap" ]; then
-  echo -e "\e[1;31m[!] It appears the controller is already installed. Script only supports new installs. \e[0m\n"
-  exit
-fi
+#if [ -e "/usr/bin/tpeap" ]; then
+#  echo -e "\e[1;31m[!] It appears the controller is already installed. Script only supports new installs. \e[0m\n"
+#  exit
+#fi
 
 echo "[+] Verifying running as root"
 if [ `id -u` -ne 0 ]; then
